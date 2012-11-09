@@ -16,23 +16,41 @@
    <div id="silkCarousel">
       
       <a href="#" id="rightBtn"></a> 
-      <a href="#" rel="1" class="pageNav"><img src="img/image1.jpg" alt=""></a>
-      <a href="#" rel="2" class="pageNav"><img src="img/image1.jpg" alt=""></a>
-      <a href="#" rel="3" class="pageNav"><img src="img/image1.jpg" alt=""></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide1.png" alt="Mars Bar" /></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide2.png" alt="Mars Bar" /></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide3.png" alt="Mars Bar" /></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide4.png" alt="Mars Bar" /></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide5.png" alt="Mars Bar" /></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide6.png" alt="Mars Bar" /></a>
+      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide7.png" alt="Mars Bar" /></a>
       <a href="#" id="leftBtn"></a> 
       
       <div class="carouselWrapper">
-         <ol><!-- Frame -->
+         <!-- Frame -->
+         <ol>
             <li>
-               <img src="resources/img/commun/mars-bar.png" alt="Mars Bar" />
+               <img src="img/slides/slide1.png" alt="Mars Bar" />
             </li>
             <li>
-                  <img src="resources/img/commun/mars-bar.png" alt="Mars Bar" />
+                  <img src="img/slides/slide2.png" alt="Mars Bar" />
             </li>
             <li>
-                  <img src="resources/img/commun/mars-bar.png" alt="Mars Bar" />
+                  <img src="img/slides/slide3.png" alt="Mars Bar" />
+            </li>
+            <li>
+               <img src="img/slides/slide4.png" alt="Mars Bar" />
+            </li>
+            <li>
+                  <img src="img/slides/slide5.png" alt="Mars Bar" />
+            </li>
+            <li>
+                  <img src="img/slides/slide6.png" alt="Mars Bar" />
+            </li>
+            <li>
+                  <img src="img/slides/slide7.png" alt="Mars Bar" />
             </li>
          </ol>
+         <!-- /Frame -->
       </div>
 
    </div>
@@ -41,11 +59,9 @@
 <script src="js/jquery-easing.js"></script>
 <script src="js/silkcarousel.js"></script>
 <script>
-   $(function(){
-      alert('dom has loaded')
-   })
-
-
+$(function(){ 
+   $('#silkCarousel').silkcarousel();
+})
 </script>
 </body>
 </html>
