@@ -1,0 +1,1 @@
+This is an old Jquery plugin, which i am gonna modernize a tiny bit and use this opportunity to get familiar with Jasmine
