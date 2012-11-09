@@ -6,55 +6,53 @@
    <meta name="description" content="The most awesome carousel Ever! Period">
    <meta name="author" content="0mbre">
    <link rel="stylesheet" href="css/main.css?v=1.0">
-   <!--[if lt IE 9]>
-   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-   <![endif]-->
 </head>
 
 <body>
-
-   <div id="silkCarousel">
-      
-      <a href="#" id="rightBtn"></a> 
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide1.png" alt="Mars Bar" /></a>
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide2.png" alt="Mars Bar" /></a>
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide3.png" alt="Mars Bar" /></a>
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide4.png" alt="Mars Bar" /></a>
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide5.png" alt="Mars Bar" /></a>
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide6.png" alt="Mars Bar" /></a>
-      <a href="#" rel="1" class="pageNav"><img src="img/slides/slide7.png" alt="Mars Bar" /></a>
-      <a href="#" id="leftBtn"></a> 
-      
-      <div class="carouselWrapper">
-         <!-- Frame -->
-         <ol>
-            <li>
-               <img src="img/slides/slide1.png" alt="Mars Bar" />
-            </li>
-            <li>
-                  <img src="img/slides/slide2.png" alt="Mars Bar" />
-            </li>
-            <li>
-                  <img src="img/slides/slide3.png" alt="Mars Bar" />
-            </li>
-            <li>
-               <img src="img/slides/slide4.png" alt="Mars Bar" />
-            </li>
-            <li>
-                  <img src="img/slides/slide5.png" alt="Mars Bar" />
-            </li>
-            <li>
-                  <img src="img/slides/slide6.png" alt="Mars Bar" />
-            </li>
-            <li>
-                  <img src="img/slides/slide7.png" alt="Mars Bar" />
-            </li>
-         </ol>
-         <!-- /Frame -->
+   <div class="container">
+      <div class="silk-carousel" id="silk-carousel">
+         
+         <a href="#" id="previous-slide"></a>
+         <ul class="silk-carousel-menu">
+            <li><a href="#" rel="1" class="jump-to-btn"><img src="img/slides/slide1.png" alt="Mars Bar" /></a></li>
+            <li><a href="#" rel="2" class="jump-to-btn"><img src="img/slides/slide2.png" alt="Mars Bar" /></a></li>
+            <li><a href="#" rel="3" class="jump-to-btn"><img src="img/slides/slide3.png" alt="Mars Bar" /></a></li>
+            <li><a href="#" rel="4" class="jump-to-btn"><img src="img/slides/slide4.png" alt="Mars Bar" /></a></li>
+            <li><a href="#" rel="5" class="jump-to-btn"><img src="img/slides/slide5.png" alt="Mars Bar" /></a></li>
+            <li><a href="#" rel="6" class="jump-to-btn"><img src="img/slides/slide6.png" alt="Mars Bar" /></a></li>
+            <li><a href="#" rel="7" class="jump-to-btn"><img src="img/slides/slide7.png" alt="Mars Bar" /></a></li>
+         </ul> 
+         <a href="#" id="next-slide"></a>
+         
+         <div class="carousel-wrapper">
+            <!-- Frame -->
+            <ol>
+               <li>
+                  <img src="img/slides/slide1.png" alt="Mars Bar" />
+               </li>
+               <li>
+                     <img src="img/slides/slide2.png" alt="Mars Bar" />
+               </li>
+               <li>
+                     <img src="img/slides/slide3.png" alt="Mars Bar" />
+               </li>
+               <li>
+                  <img src="img/slides/slide4.png" alt="Mars Bar" />
+               </li>
+               <li>
+                     <img src="img/slides/slide5.png" alt="Mars Bar" />
+               </li>
+               <li>
+                     <img src="img/slides/slide6.png" alt="Mars Bar" />
+               </li>
+               <li>
+                     <img src="img/slides/slide7.png" alt="Mars Bar" />
+               </li>
+            </ol>
+            <!-- /Frame -->
       </div>
 
    </div>
-
 <script src="js/jquery-1.8.js"></script>
 <script src="js/jquery-easing.js"></script>
 <script src="js/silkcarousel.js"></script>
