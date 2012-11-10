@@ -19,12 +19,12 @@ h1 { font-size: 3em }
    Base
    ========================================================================== */
 
-.carousel-wrapper {
+.silkCarousel-wrapper {
 	overflow: scroll;
 	float: left
 }
 
-.carousel-wrapper > ol > li {
+.silkCarousel-wrapper > ol > li {
 	float: left;
 }
 
@@ -32,14 +32,14 @@ h1 { font-size: 3em }
    nav
    ========================================================================== */
 
- .silk-carousel-menu {
+ .silkCarousel-menu {
  	float: left;
  }
 
- .silk-carousel-menu > li {
+ .silkCarousel-menu > li {
  	display: inline;
  }
 
-.silk-carousel-menu > li img {
+.silkCarousel-menu > li img {
  	width: 10em;
  }

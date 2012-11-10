@@ -1,7 +1,13 @@
 describe('Silk Carousel', function() {
 	var $carouselFixture;
+
 	beforeEach(function() {
-		$carouselFixture = $( readFixtures('carousel-fixture.html')) ;
+		$carouselFixture = $( readFixtures('carousel-fixture.html'));
+		this.addMatchers({
+			toBeInstanceOf : function( expected ) {
+				return this.actual instanceof expected && this.actual.length > 0;
+			}
+		});
 	});
 
 	describe("Initialization", function() {
@@ -40,13 +46,23 @@ describe('Silk Carousel', function() {
 	});
 
 	describe('DOM init', function() {
+		var initialNumberOfSlide;
+		var $slideWraper;
 		it('Should find the slides framed Viewport', function() {
-			expect( $carouselFixture.filter('.silkCarousel-frame') ).toBeDefined();
+			expect( $carouselFixture.find('.silkCarousel-frame') ).toBeInstanceOf( jQuery );
 		});
 
 		
 		it('Should find the slides Wrapper', function() {
-			expect( $carouselFixture.filter('.silkCarousel-slide-wrapper') ).toBeDefined();
+			$slideWraper = $carouselFixture.find('.silkCarousel-slide-wrapper');
+			expect( $slideWraper ).toBeInstanceOf( jQuery );
+			console.log($slideWraper);
+		});
+
+		it("should find slides", function() {
+			console.log($slideWraper);
+			initialNumberOfSlide = $slideWraper.children().length;
+			expect(initialNumberOfSlide).toBeGreaterThan(0);
 		});
 	});
 
