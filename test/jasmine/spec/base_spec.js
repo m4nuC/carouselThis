@@ -1,8 +1,7 @@
 describe('Silk Carousel', function() {
-	var frag;
+	var $carouselFixture;
 	beforeEach(function() {
-		frag = $( readFixtures('frag.html')) ;
-		console.log(frag);
+		$carouselFixture = $( readFixtures('carousel-fixture.html')) ;
 	});
 
 	describe("Initialization", function() {
@@ -12,16 +11,12 @@ describe('Silk Carousel', function() {
 
 		it("Find jasmine.jquery", function() {
 			expect(readFixtures()).toBeDefined();
-		});		
+		});
 
-		describe("fixturea", function() {
-			it("Find the frag.html fixture", function() {
-				expect(frag).toBeDefined();
-			});	
-
-			it("Find find a 'P' tag within frag fixture", function() {
-				expect(frag.find('p')).toBeDefined();
-			});	
+		describe("Markup", function() {
+			it("Find the Carousel Fixture", function() {
+				expect($carouselFixture).toBeDefined();
+			});
 		});
 	});
 
@@ -31,8 +26,28 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should be chainable", function() {
-			expect(frag.silkCarousel()).toBe(frag);
+			expect($carouselFixture.silkCarousel()).toBe($carouselFixture);
+		});
+
+		it("should be able to iterate through a jquery Collection", function() {
+			var $carouselInstances = $carouselFixture.filter('.silkCarousel');
+			expect($carouselInstances.silkCarousel()).toBe($carouselInstances);
+		});
+
+		// it("Sould have a defaut object", function() {
+		// exepct($carouselInstances.silkCarousel()).toBeDefined();
+		// });
+	});
+
+	describe('DOM init', function() {
+		it('Should find the slides framed Viewport', function() {
+			expect( $carouselFixture.filter('.silkCarousel-frame') ).toBeDefined();
+		});
+
+		
+		it('Should find the slides Wrapper', function() {
+			expect( $carouselFixture.filter('.silkCarousel-slide-wrapper') ).toBeDefined();
 		});
 	});
-});
 
+});

@@ -4,6 +4,7 @@
  * All rights reserved.
 */
 
+
 jQuery.fn.silkCarousel = function(options){
 	//////////// Configuration Parameters	
 	
