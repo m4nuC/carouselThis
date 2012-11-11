@@ -2,6 +2,8 @@ describe('Silk Carousel', function() {
 	var $carouselFixture = $( readFixtures('carousel-fixture.html'));
 
 	beforeEach(function() {
+
+
 		this.addMatchers({
 			toBeInstanceOf : function( expected ) {
 				return this.actual instanceof expected && this.actual.length > 0;
@@ -92,6 +94,9 @@ describe('Silk Carousel', function() {
 		var $slideWraper = $frame.children('ol');
 		var initialNumberOfSlide = $slideWraper.children().length;
 
+		beforeEach(function() {
+			spyOn( jQuery.fn, 'silkCarousel');
+		});
 
 		it('Should find the slides framed Viewport', function() {
 			expect( $frame ).toBeInstanceOf( jQuery );
@@ -107,7 +112,6 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should duplicate slides", function() {
-			spyOn( jQuery.fn, 'silkCarousel');
 			$carouselFixture.silkCarousel();
 			expect(jQuery.fn.silkCarousel).toHaveBeenCalled();
 			expect(initialNumberOfSlide).toBeLessThan( $slideWraper.children().length );
@@ -115,7 +119,7 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should create the navigation", function() {
-			spyOn( jQuery.fn, 'silkCarousel');
+			
 			$carouselFixture.silkCarousel();
 			expect(jQuery.fn.silkCarousel).toHaveBeenCalled();
 			var $menuWrap = $carouselFixture.children('.silkCarousel-menu');
@@ -126,8 +130,12 @@ describe('Silk Carousel', function() {
 			var menuItem = $menuWrap.children().first().find('a');
 			expect(menuItem).toBeInstanceOf( jQuery );
 			expect(menuItem).toHaveAttr('data-page');
+		});
 
-
+		it("Should createa 'spacer' for negative jump to page", function() {
+			var instance = Object.create(silkCarousel);
+			instance.init( $carouselFixture);
+			expect(instance.$spacers.length).toBeGreaterThan(0);
 		});
 	});
 

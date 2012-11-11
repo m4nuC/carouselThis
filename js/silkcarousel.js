@@ -31,7 +31,7 @@
 			**
 			*/
 
-			_initDOM : function(){
+			_initDOM : function() {
 
 				// Create the navigation
 				
@@ -66,8 +66,12 @@
 													.appendTo(this.$slideWrap)
 														.siblings();
 
+				// Create and stock "spacers" for the negative jump to page
+				this.$spacers = this.$slidesCollec.slice(0, this.initSlideLength-2)
+								.clone()
+									.addClass('silkCarousel-spacer')
+										.css({display:"none"});
 
-				
 			},
 
 			_build: function() {
