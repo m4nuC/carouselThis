@@ -6,6 +6,10 @@ describe('Silk Carousel', function() {
 		this.addMatchers({
 			toBeInstanceOf : function( expected ) {
 				return this.actual instanceof expected && this.actual.length > 0;
+			},
+
+			toBeA: function( expected ) {
+				return typeof this.actual === expected;
 			}
 		});
 	});
@@ -27,12 +31,12 @@ describe('Silk Carousel', function() {
 	});
 
 	describe("jQuery.silkCarousel Method", function() {
-		it("should be available", function() {
-			expect($.fn.silkCarousel).toBeDefined();
+		it("should be an available method", function() {
+			expect($.fn.silkCarousel).toBeA('function');
 		});
 
 		it("should be chainable", function() {
-			expect($carouselFixture.silkCarousel()).toBe($carouselFixture);
+			expect($carouselFixture.silkCarousel).toBeA('function');
 		});
 
 		it("should be able to iterate through a jquery Collection", function() {
@@ -48,22 +52,31 @@ describe('Silk Carousel', function() {
 	describe('DOM init', function() {
 		var initialNumberOfSlide;
 		var $slideWraper;
+		beforeEach(function() {
+			$slideWraper = $carouselFixture.find('.silkCarousel-slide-wrapper');
+			initialNumberOfSlide = $slideWraper.children().length;
+		});
+
+
 		it('Should find the slides framed Viewport', function() {
 			expect( $carouselFixture.find('.silkCarousel-frame') ).toBeInstanceOf( jQuery );
 		});
 
 		
 		it('Should find the slides Wrapper', function() {
-			$slideWraper = $carouselFixture.find('.silkCarousel-slide-wrapper');
 			expect( $slideWraper ).toBeInstanceOf( jQuery );
-			console.log($slideWraper);
 		});
 
 		it("should find slides", function() {
-			console.log($slideWraper);
-			initialNumberOfSlide = $slideWraper.children().length;
 			expect(initialNumberOfSlide).toBeGreaterThan(0);
 		});
+
+		it("should duplicate slides", function() {
+			$carouselFixture.silkCarousel();
+			expect(initialNumberOfSlide).toBeLessThan( $slideWraper.children().length );
+		});
+
+
 	});
 
 });

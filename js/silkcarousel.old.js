@@ -82,12 +82,12 @@ jQuery.fn.silkCarousel = function(options){
 		};
 
 		//////////// Take in a page index and return its value ///////// ! NOTE : Index % initlgth patern for unknow length array
-		function indexIsContent (index) {	
+		function indexIsContent (index) {
 			if ((index - initLgth) <= 0){return index;}
 			else {
-				for (var i = 2; i < 4; i++) { 					// var i = 2 cause it can't be 0 nor 1
-					if ((index - (initLgth * i)) <= 0) {		//  i < 4 cause we know the lgth.. 
-						return (index - (initLgth * (i -1))) 	// -1 cause we want the one before the one witch return <0
+				for (var i = 2; i < 4; i++) {					// var i = 2 cause it can't be 0 nor 1
+					if ((index - (initLgth * i)) <= 0) {		//  i < 4 cause we know the lgth..
+						return (index - (initLgth * (i -1)));	// -1 cause we want the one before the one witch return <0
 					};
 				};
 			};

@@ -13,7 +13,7 @@
 				autoDelay : 500
 			},
 
-			_init : function(el, options){
+			init : function(el, options){
 				this.el = el;
 				this.$el = $(el);
 				this.winSize = $(window).width();
@@ -27,8 +27,11 @@
 			** The goal here is to make all DOM maniputalion on Init and dont touch the DOM again after that
 			**
 			*/
-			
+
 			_initDOM : function(el, options){
+				// Duplicate the whole collection to the left and then the first slide to the right.
+				// We could only duplicate the first and last but then we have to set 2 "reset" trigger on the first and last elemenst
+				// Where we juse need to set that trigger on the first one here
 				this.$slidesCollec = this.$slidesCollec.clone()
 											.appendTo(this.$slideWrap)
 												.eq(0).clone()
@@ -44,7 +47,7 @@
 	jQuery.fn.silkCarousel = function(options){
 		var instance = Object.create(silkCarousel);
 		return this.each(function() {
-			instance._init(this, options);
+			instance.init(this, options);
 		});
 	};
 
