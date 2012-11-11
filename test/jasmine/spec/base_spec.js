@@ -44,9 +44,18 @@ describe('Silk Carousel', function() {
 			expect($carouselInstances.silkCarousel()).toBe($carouselInstances);
 		});
 
-		// it("Sould have a defaut object", function() {
-		// exepct($carouselInstances.silkCarousel()).toBeDefined();
-		// });
+		it("Sould have a defaut object", function() {
+			var instance = Object.create(silkCarousel);
+			expect(instance.defaults).toBeA( 'object' );
+			expect(instance.defaults.size).toBe( 500 );
+		});
+
+		it("Default object should get overiden by config", function() {
+			var instance = Object.create(silkCarousel);
+			instance.init( $carouselFixture, { size : 1 });
+			expect(instance.options).toBeA( 'object' );
+			expect(instance.options.size).toBe(1);
+		});
 	});
 
 	describe('DOM init', function() {

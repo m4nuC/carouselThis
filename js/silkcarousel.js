@@ -28,7 +28,7 @@
 			**
 			*/
 
-			_initDOM : function(el, options){
+			_initDOM : function(){
 				// Duplicate the whole collection to the left and then the first slide to the right.
 				// We could only duplicate the first and last but then we have to set 2 "reset" trigger on the first and last elemenst
 				// Where we juse need to set that trigger on the first one here
@@ -50,5 +50,11 @@
 			instance.init(this, options);
 		});
 	};
+
+	// Make the main object available on global scope if testing suite is present
+	if (  typeof jasmine !== 'undefined' ) {
+		window.silkCarousel = silkCarousel;
+		console.log('testing environment');
+	}
 
 }( jQuery, window, document, undefined ));
