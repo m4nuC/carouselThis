@@ -1,8 +1,7 @@
 describe('Silk Carousel', function() {
-	var $carouselFixture;
+	var $carouselFixture = $( readFixtures('carousel-fixture.html'));
 
 	beforeEach(function() {
-		$carouselFixture = $( readFixtures('carousel-fixture.html'));
 		this.addMatchers({
 			toBeInstanceOf : function( expected ) {
 				return this.actual instanceof expected && this.actual.length > 0;
@@ -10,11 +9,31 @@ describe('Silk Carousel', function() {
 
 			toBeA: function( expected ) {
 				return typeof this.actual === expected;
+			},
+
+			toBeVisible : function() {
+				return $(this.actual).isVisible();
+			},
+
+			nodeNameToBe: function( expected ) {
+				if ( this.actual instanceof  jQuery ) {
+					return this.actual[0].nodeName === expected || this.actual[0].nodeName === expected.toUpperCase();
+				} else {
+					return this.actual.nodeName === expected || this.actual.nodeName === expected.toUpperCase();
+				}
 			}
 		});
 	});
 
+	afterEach(function() {
+		//$carouselFixture = $( readFixtures('carousel-fixture.html'));
+	});
+
 	describe("Initialization", function() {
+		it("Sould have a silkcarousel object available on global namespace", function() {
+			expect(silkCarousel).toBeA( 'object' );
+		});
+
 		it("Find Jquery", function() {
 			expect($).toBeDefined();
 		});
@@ -41,34 +60,41 @@ describe('Silk Carousel', function() {
 
 		it("should be able to iterate through a jquery Collection", function() {
 			var $carouselInstances = $carouselFixture.filter('.silkCarousel');
-			expect($carouselInstances.silkCarousel()).toBe($carouselInstances);
+			expect($(sandbox()).silkCarousel()).toBeInstanceOf( jQuery );
 		});
 
 		it("Sould have a defaut object", function() {
 			var instance = Object.create(silkCarousel);
 			expect(instance.defaults).toBeA( 'object' );
+		});
+
+		it("Should have default parameters", function() {
+			var instance = Object.create(silkCarousel);
 			expect(instance.defaults.size).toBe( 500 );
+			expect(instance.defaults.type).toBe( 'normal' );
+			expect(instance.defaults.navigationStyle).toBe( 'thumbnails' );
+			expect(instance.defaults.easingMethod).toBe( 'normal' );
+			expect(instance.defaults.switchDelay).toBe( 2000 );
+			expect(instance.defaults.tansitionSpeed).toBe( 500 );
+			expect(instance.defaults.previousNextButtons).toBe( false );
 		});
 
 		it("Default object should get overiden by config", function() {
 			var instance = Object.create(silkCarousel);
 			instance.init( $carouselFixture, { size : 1 });
-			expect(instance.options).toBeA( 'object' );
-			expect(instance.options.size).toBe(1);
+			expect(instance.settings).toBeA( 'object' );
+			expect(instance.settings.size).toBe(1);
 		});
 	});
 
 	describe('DOM init', function() {
-		var initialNumberOfSlide;
-		var $slideWraper;
-		beforeEach(function() {
-			$slideWraper = $carouselFixture.find('.silkCarousel-slide-wrapper');
-			initialNumberOfSlide = $slideWraper.children().length;
-		});
+		var $frame = $carouselFixture.children('div');
+		var $slideWraper = $frame.children('ol');
+		var initialNumberOfSlide = $slideWraper.children().length;
 
 
 		it('Should find the slides framed Viewport', function() {
-			expect( $carouselFixture.find('.silkCarousel-frame') ).toBeInstanceOf( jQuery );
+			expect( $frame ).toBeInstanceOf( jQuery );
 		});
 
 		
@@ -81,11 +107,28 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should duplicate slides", function() {
+			spyOn( jQuery.fn, 'silkCarousel');
 			$carouselFixture.silkCarousel();
+			expect(jQuery.fn.silkCarousel).toHaveBeenCalled();
 			expect(initialNumberOfSlide).toBeLessThan( $slideWraper.children().length );
+			expect($slideWraper.children().length).toEqual(initialNumberOfSlide * 2 + 1);
 		});
 
+		it("should create the navigation", function() {
+			spyOn( jQuery.fn, 'silkCarousel');
+			$carouselFixture.silkCarousel();
+			expect(jQuery.fn.silkCarousel).toHaveBeenCalled();
+			var $menuWrap = $carouselFixture.children('.silkCarousel-menu');
+			expect($menuWrap).toBeInstanceOf( jQuery );
+			expect($menuWrap).toHaveClass('silkCarousel-menu');
+			expect($menuWrap.children().length).toEqual(initialNumberOfSlide);
+			expect($menuWrap.children().first()).nodeNameToBe('li');
+			var menuItem = $menuWrap.children().first().find('a');
+			expect(menuItem).toBeInstanceOf( jQuery );
+			expect(menuItem).toHaveAttr('data-page');
 
+
+		});
 	});
 
 });
