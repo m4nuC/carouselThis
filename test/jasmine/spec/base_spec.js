@@ -33,7 +33,7 @@ describe('Silk Carousel', function() {
 
 	describe("Initialization", function() {
 		it("Sould have a silkcarousel object available on global namespace", function() {
-			expect(silkCarousel).toBeA( 'object' );
+			expect($.fn.silkCarousel.Class).toBeA( 'object' );
 		});
 
 		it("Find Jquery", function() {
@@ -66,12 +66,12 @@ describe('Silk Carousel', function() {
 		});
 
 		it("Sould have a defaut object", function() {
-			var instance = Object.create(silkCarousel);
+			var instance = Object.create($.fn.silkCarousel.Class);
 			expect(instance.defaults).toBeA( 'object' );
 		});
 
 		it("Should have default parameters", function() {
-			var instance = Object.create(silkCarousel);
+			var instance = Object.create($.fn.silkCarousel.Class);
 			expect(instance.defaults.size).toBe( 500 );
 			expect(instance.defaults.type).toBe( 'normal' );
 			expect(instance.defaults.navigationStyle).toBe( 'thumbnails' );
@@ -82,7 +82,7 @@ describe('Silk Carousel', function() {
 		});
 
 		it("Default object should get overiden by config", function() {
-			var instance = Object.create(silkCarousel);
+			var instance = Object.create($.fn.silkCarousel.Class);
 			instance.init( $carouselFixture, { size : 1 });
 			expect(instance.settings).toBeA( 'object' );
 			expect(instance.settings.size).toBe(1);
@@ -94,9 +94,7 @@ describe('Silk Carousel', function() {
 		var $slideWraper = $frame.children('ol');
 		var initialNumberOfSlide = $slideWraper.children().length;
 
-		beforeEach(function() {
-			spyOn( jQuery.fn, 'silkCarousel');
-		});
+
 
 		it('Should find the slides framed Viewport', function() {
 			expect( $frame ).toBeInstanceOf( jQuery );
@@ -112,14 +110,16 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should duplicate slides", function() {
+			spyOn( jQuery.fn, 'silkCarousel');
 			$carouselFixture.silkCarousel();
+
 			expect(jQuery.fn.silkCarousel).toHaveBeenCalled();
 			expect(initialNumberOfSlide).toBeLessThan( $slideWraper.children().length );
 			expect($slideWraper.children().length).toEqual(initialNumberOfSlide * 2 + 1);
 		});
 
 		it("should create the navigation", function() {
-			
+			spyOn( jQuery.fn, 'silkCarousel');
 			$carouselFixture.silkCarousel();
 			expect(jQuery.fn.silkCarousel).toHaveBeenCalled();
 			var $menuWrap = $carouselFixture.children('.silkCarousel-menu');
@@ -133,7 +133,8 @@ describe('Silk Carousel', function() {
 		});
 
 		it("Should createa 'spacer' for negative jump to page", function() {
-			var instance = Object.create(silkCarousel);
+			console.log($.fn.silkCarousel.Class);
+			var instance = Object.create($.fn.silkCarousel.Class);
 			instance.init( $carouselFixture);
 			expect(instance.$spacers.length).toBeGreaterThan(0);
 		});

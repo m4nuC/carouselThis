@@ -87,9 +87,6 @@
 	};
 
 	// Make the main object available on global scope if a testing framework is available
-	if (  typeof jasmine !== 'undefined' ) {
-		window.silkCarousel = silkCarousel;
-		console.log('testing environment');
-	}
+	jQuery.fn.silkCarousel.Class = silkCarousel;
 
-}( jQuery, window, document, undefined ));
+}( jQuery, window, document ));
