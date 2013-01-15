@@ -47,7 +47,14 @@
 				var self = this;
 
 				//
-				if (self.settings.navigationStyle === 'thumbnails') self._setupNav();
+				if (self.settings.navigationStyle === 'thumbnails') {
+					self._setupNav();
+				} else {
+					self.$navItems = $('#' + self.settings.navigationStyle).find('a');
+					self.$navItems.each( function(i) {
+						self.$navItems.eq(i).data('page', i+1);
+					});
+				}
 
 				//Sets the CSS
 				self.$slidesCollec.css({
