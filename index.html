@@ -47,9 +47,13 @@
                <li>
                      <img src="img/slides/slide7.png" alt="Mars Bar" />
                </li>
+
+               
             </ol>
             <!-- /Frame -->
          </div>
+         <a href="" id="leftBtn">LEFT</a>
+         <a href="" id="rightBtn">RIGHT</a>
       </div>
 
    </div>
@@ -58,7 +62,9 @@
 <script src="js/silkcarousel.js"></script>
 <script>
 $(function(){ 
-   $('#carousel1').silkCarousel();
+   $('#carousel1').silkCarousel({
+      'size' : 800
+   });
 })
 </script>
 </body>

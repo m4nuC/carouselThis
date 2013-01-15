@@ -18,16 +18,20 @@ h1 { font-size: 3em }
 /* =============================================================================
    Base
    ========================================================================== */
-
+.silkCarousel {
+	
+}
 .silkCarousel-wrapper {
-	overflow: scroll;
-	float: left
+	
+	float: left;
+	clear: left;
 }
 
 .silkCarousel-wrapper > ol > li {
 	float: left;
 }
 
+.silkCarousel-frame { overflow: hidden;clear: left}
 /* =============================================================================
    nav
    ========================================================================== */
