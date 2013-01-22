@@ -10,13 +10,18 @@
 		defaults : {
 				type                : 'normal', // normal, fluid, responsive
 				size                : 500,
-				easingMethod        : "normal",
+				easingMethod        : "linear",
 				tansitionSpeed      : 500,
-				rightBtnId          : 'rightBtn',
-				leftBtnId           : 'leftBtn',
 				switchDelay         : 2000,
 				previousNextButtons : false,
-				navigationStyle     : 'thumbnails'
+				navigation : {
+					'type'       : 'thumbnails',
+					'position'   : 'top',
+					'id'         : 'silkCarousel-menu',
+					'className'  : 'silkCarousel-menu',
+					'rightBtnId' : 'rightBtn',
+					'leftBtnId'  : 'leftBtn'
+				}
 			},
 
 			init : function(el, config){
@@ -24,12 +29,12 @@
 				this.$el             = $(el);
 				this.winSize         = $(window).width();
 				this.settings        = $.extend({}, this.defaults, config );
-				this.$frame          = this.$el.children('.silkCarousel-frame');
+				this.$frame          = this.$el.children( '.silkCarousel-frame' );
 				this.$slideWrap      = this.$frame.children('ol');
 				this.$slidesCollec   = this.$slideWrap.children();
 				this.initSlideLength = this.$slidesCollec.length;
-				this.$leftBtn        = this.$el.find('#' + this.settings.leftBtnId);
-				this.$rightBtn       = this.$el.find('#' + this.settings.rightBtnId);
+				this.$leftBtn        = this.$el.find( '#' + this.settings.navigation.leftBtnId );
+				this.$rightBtn       = this.$el.find( '#' + this.settings.navigation.rightBtnId );
 				this.currPage        = this.initSlideLength;
 				this.$navItems       = null ;
 				this._initDOM();
@@ -46,30 +51,32 @@
 
 				var self = this;
 
-				//
-				if (self.settings.navigationStyle === 'thumbnails') {
-					self._setupNav();
-				} else {
-					self.$navItems = $('#' + self.settings.navigationStyle).find('a');
+				// INIT NAV
+				if ( self.settings.navigation.style === 'thumbnails' ) {
+					self._setupThumbnailNav();
+				} else if ( self.settings.navigation.style === 'fixed' ) {
+					self.$navItems = $( '#' + self.settings.navigation.id ).find('a');
 					self.$navItems.each( function(i) {
-						self.$navItems.eq(i).data('page', i+1);
+						self.$navItems.eq( i ).data( 'page', i + 1 );
 					});
 				}
 
-				//Sets the CSS
+				//SETS THE CSS
 				self.$slidesCollec.css({
-					'float' : 'left',
-					'width' :  self.settings.size
-				});
+						'float' : 'left',
+						'width' :  self.settings.size
+					});
+
 				self.$frame.css({
-					'width':self.settings.size,
-					'overflow': 'hidden'
-				});
+						'width':self.settings.size,
+						'overflow': 'hidden'
+					});
+
 				self.$slideWrap.css('width', (self.settings.size * (self.initSlideLength * 4)));
 
+
+				//DOM HEAVY LIFTING
 				// Duplicate the whole collection to the left and then the first slide to the right.
-				// We could only duplicate the first and last but then we have to set 2 "reset" trigger on the first and last elemenst
-				// Where we juse need to set that trigger on the first one here
 				self.$slidesCollec = self.$slidesCollec.clone()
 											.appendTo(self.$slideWrap)
 												.eq(0).clone()
@@ -86,67 +93,71 @@
 
 			},
 
-			_setupNav : function() {
-				var i = 0,
-				self = this,
+			// Create the thumbail for the thumnail nav
+			_setupThumbnailNav : function() {
+				var i           = 0,
+					self        = this,
 					navHtml     = $('<ul>'),
 					navItemHtml = null;
 
 				for ( ;i < self.initSlideLength; i++ ) {
 					
-
 					navItemHtml = $('<a>', {
-						'class'     : 'silkCarousel-nav-item',
-						'data-page' : i+1
-					});
+							'class'     : 'silkCarousel-nav-item',
+							'data-page' : i+1
+						});
 					
-					navItemHtml.append( self.$slidesCollec.eq(i).children('img').clone());
+					navItemHtml.append( self.$slidesCollec.eq(i).children( 'img' ).clone());
 
-					navItemHtml = $('<li>').append(navItemHtml);
+					navItemHtml = $( '<li>' ).append( navItemHtml );
 					navHtml.append(navItemHtml);
-									}
+				}
 
-				navHtml.addClass('silkCarousel-menu').prependTo(self.$el);
+				navHtml.addClass( self.settings.navigation.className ).prependTo( self.$el );
 				
 				self.$navItems = navHtml.find('a');
 			},
 
+			// Setups
 			_initEvents: function() {
+
 				var self = this;
+
 				self.$rightBtn.click(function (e) {
 					e.preventDefault();
 					self._goToPage(+1);
 				});
 
-                self.$leftBtn.click(function (e) {
-                    e.preventDefault();
-                    self._goToPage(-1);
-                });
+				self.$leftBtn.click(function (e) {
+					e.preventDefault();
+					self._goToPage(-1);
+				});
 
 				self.$navItems.click(function (e) {
-                    e.preventDefault();
+					e.preventDefault();
 
-                    var toPage = parseInt($(this).data('page'), 10),
-                        fromPage = self._indexIsContent(self.currPage + 1); // Plus one cause currpage is 0 based
-                    
-                    if (toPage === fromPage)  return false;
+					var toPage = parseInt($(this).data('page'), 10),
+						fromPage = self._indexIsContent(self.currPage + 1); // Plus one cause currpage is 0 based
+					
+					if (toPage === fromPage) return false;
 					self._goToPage(toPage, fromPage);
-                });
+				});
 			},
 
 			_resetCarousel: function(p) {
-                    this.$frame.scrollLeft(this.settings.size * p);
-                    this.currPage = p;
-            },
+					this.$frame.scrollLeft(this.settings.size * p);
+					this.currPage = p;
+					this._addCurrent();
+			},
 
 			_indexIsContent: function(index) {
 				return index % this.initSlideLength || this.initSlideLength;
-            },
+			},
 
 			_addCurrent : function() {
 				var currIndex = this.currPage === this.initSlideLength ? 0 : this._indexIsContent(this.currPage);
 				this.$navItems.removeClass('current').eq(currIndex).addClass('current');
-            },
+			},
 
 			_goToPage: function( toPage, fromPage ) {
 				fromPage = fromPage || false;
@@ -156,53 +167,53 @@
 
 				if (self.$frame.is(':animated')) return false;
 
-                ////// 1- Go to next slide and slice if needed
-                if (!fromPage) {
+				////// 1- Go to next slide and slice if needed
+				if (!fromPage) {
 
-                    left = self.settings.size * toPage;
-                    self.currPage += toPage;
+					left = self.settings.size * toPage;
+					self.currPage += toPage;
 
-                } else {
-                    var dist = toPage - fromPage,
+				} else {
+					var dist = toPage - fromPage,
 						sliced,
 						i = 0 ;
 
-                    left = self.settings.size;
+					left = self.settings.size;
 
-                    // Negative jump to page
-                    if ( dist < 0 ) {
-                        left = -left;
-                        sliced = self.$slidesCollec.slice(self.currPage + (dist + 1), self.currPage).css('display', "none");
+					// Negative jump to page
+					if ( dist < 0 ) {
+						left = -left;
+						sliced = self.$slidesCollec.slice(self.currPage + (dist + 1), self.currPage).css('display', "none");
 
-                        for (; i < sliced.length; i++) { // we show as many clones as neccesary to fill the gaps caused by slicing
-                            self.$spacers.eq(i).css('display', "");
-                        }
+						for (; i < sliced.length; i++) { // we show as many clones as neccesary to fill the gaps caused by slicing
+							self.$spacers.eq(i).css('display', "");
+						}
 
-                    // Positive jump to page
-                    } else {
-                        sliced = self.$slidesCollec.slice(self.currPage + 1, self.currPage + dist).css('display', "none");
-                    }
-                    self.currPage += dist;
-                }
+					// Positive jump to page
+					} else {
+						sliced = self.$slidesCollec.slice(self.currPage + 1, self.currPage + dist).css('display', "none");
+					}
+					self.currPage += dist;
+				}
 
-                // 2 Animate
-                self.$frame.animate({
-                    scrollLeft: '+=' + left
-				},
+				// 2 Animate
+				self.$frame.animate({
+					scrollLeft: '+=' + left
+				}, self.settings.tansitionSpeed, self.settings.easingMethod,
 				function() {
 
-                    // 3 call back
-                    if (self.currPage === 0 || self.currPage ===  self.$slidesCollec.length) self._resetCarousel(self.initSlideLength );
+					// 3 call back
+					if (self.currPage === 0 || self.currPage ===  self.$slidesCollec.length) self._resetCarousel(self.initSlideLength );
 
-                    if (fromPage) {
-                        sliced.css('display', "");
-                        self.$spacers.css('display', "none");
-                        self.$frame.scrollLeft(self.settings.size * self.currPage);
-                    }
-                });
-                self._addCurrent();
-                return false;
-            }
+					if (fromPage) {
+						sliced.css('display', "");
+						self.$spacers.css('display', "none");
+						self.$frame.scrollLeft(self.settings.size * self.currPage);
+					}
+				});
+				self._addCurrent();
+				return false;
+			}
 	};
 
 	jQuery.fn.silkCarousel = function(config){
@@ -212,7 +223,8 @@
 		});
 	};
 
-	// Make the main object available on global scope if a testing framework is available
+
+	// Make the class available for test
 	jQuery.fn.silkCarousel.Class = silkCarousel;
 
 }( jQuery, window, document ));
