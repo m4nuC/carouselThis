@@ -1,1 +1,23 @@
-This is an old Jquery plugin, which i am gonna modernize a tiny bit and use this opportunity to get familiar with Jasmine
+silkCarousel plugin
+====================
+
+Yet another jquery carousel plugin. 
+
+Usage
+---------------------
+
+	
+Add this to your `$(document).ready` function:
+
+	$("#carousel").carousel();
+	
+Or with options:
+
+	$("#carousel").carousel({showPager: false});
+	
+Options
+---------------------
+
+`Option `
+Decsription
+
