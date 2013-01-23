@@ -52,9 +52,9 @@
 				var self = this;
 
 				// INIT NAV
-				if ( self.settings.navigation.style === 'thumbnails' ) {
+				if ( self.settings.navigation.type === 'thumbnails' ) {
 					self._setupThumbnailNav();
-				} else if ( self.settings.navigation.style === 'fixed' ) {
+				} else if ( self.settings.navigation.type === 'fixed' ) {
 					self.$navItems = $( '#' + self.settings.navigation.id ).find('a');
 					self.$navItems.each( function(i) {
 						self.$navItems.eq( i ).data( 'page', i + 1 );
@@ -114,7 +114,7 @@
 				}
 
 				navHtml.addClass( self.settings.navigation.className ).prependTo( self.$el );
-				
+				console.log(navHtml);
 				self.$navItems = navHtml.find('a');
 			},
 
@@ -148,6 +148,7 @@
 					this.$frame.scrollLeft(this.settings.size * p);
 					this.currPage = p;
 					this._addCurrent();
+
 			},
 
 			_indexIsContent: function(index) {
