@@ -12,7 +12,7 @@ This is the minimum markup to get statrted
 
 ```html
 <div id="carousel">       
-   <div>
+   <div id="carouselThis-frame">
       <ol>
          <li>Your content here (Images, Inline text ..)</li>
          <li>Your content here (Images, Inline text ..)</li>
