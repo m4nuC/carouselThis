@@ -1,22 +1,42 @@
-silkCarousel plugin
-====================
+#carouselThis Jquery Plugin
 
-Yet another jquery carousel plugin. 
+Carousel Plugin that focus on ease of use and performance.
 
-Usage
----------------------
+##Usage
 
-	
-Add this to your `$(document).ready` function:
+###Markup & Init
 
-	$("#carousel").carousel();
-	
+This is the minimum markup to get statrted
+
+```html
+<div id="carousel">       
+   <div>
+      <ol>
+         <li>Your content here (Images, Inline text ..)</li>
+         <li>Your content here (Images, Inline text ..)</li>
+         <li>Your content here (Images, Inline text ..)</li>
+         <li>Your content here (Images, Inline text ..)</li>
+      </ol>
+   </div>
+</div>
+```
+
+With the mark above the Script init would look like:
+
+```javascript
+$(document).ready(function({
+	$("#carousel").carouselThis();
+})
+```
 Or with options:
 
-	$("#carousel").carousel({showPager: false});
+```
+$(document).ready(function({
+   $("#carousel").carouselThis({showPager: false});
+})
+```
 	
-Options
----------------------
+##Options
 
 `Option `
 Decsription
