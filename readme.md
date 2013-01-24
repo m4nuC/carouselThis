@@ -1,8 +1,10 @@
 #carouselThis Jquery Plugin
 
 Carousel / Slider Plugin that focuses on ease of use and performance. Very light weight with 0 DOM heavy lifting after initialization of the plugin. 
+
 Basic Demo [here](http://m4nuc.github.com/carouselThis/).
-_ More instructions comming soon _
+
+* More instructions comming soon *
 
 ##Usage
 
@@ -39,7 +41,33 @@ $(document).ready(function({
 ```
 	
 ##Options
+      defaults : {
+            type                : 'normal', // normal, fluid, responsive
+            easingMethod        : "linear",
+            tansitionSpeed      : 500,
+            switchDelay         : 2000,
+            navigation : {
+               'type'       : 'thumbnail',
+               'position'   : 'top',
+               'id'         : 'carouselThis-menu',
+               'className'  : 'carouselThis-menu',
+               'rightBtnId' : 'rightBtn',
+               'leftBtnId'  : 'leftBtn'
+            }
+         }
+`type`
+Currently Deprecated (Todo : fluid, responsive)
 
-`Option `
-Decsription
+`easingMethod `
+Must be an existing easing method name. Default to `linear`
+
+`tansitionSpeed`
+Speed of the sliding effect
+
+`switchDelay `
+Delay of the auto slide (TODO)
+
+`navigation`
+Configuration object :
+
 
