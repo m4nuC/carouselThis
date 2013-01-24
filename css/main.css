@@ -18,32 +18,30 @@ h1 { font-size: 3em }
 /* =============================================================================
    Base
    ========================================================================== */
-.silkCarousel {
-	
-}
-.silkCarousel-wrapper {
+
+.carouselThis-wrapper {
 	
 	float: left;
 	clear: left;
 }
 
-.silkCarousel-wrapper > ol > li {
+.carouselThis-wrapper > ol > li {
 	float: left;
 }
 
-.silkCarousel-frame { overflow: hidden;clear: left}
+#carouselThis-frame { overflow: hidden;clear: left}
 /* =============================================================================
    nav
    ========================================================================== */
 
- .silkCarousel-menu {
+ .carouselThis-menu {
  	float: left;
  }
 
- .silkCarousel-menu > li {
+ .carouselThis-menu > li {
  	display: inline;
  }
 
-.silkCarousel-menu > li img {
+.carouselThis-menu > li img {
  	width: 10em;
  }

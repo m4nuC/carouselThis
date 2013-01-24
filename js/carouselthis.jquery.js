@@ -6,7 +6,7 @@
 
 (function( $, window, document, undefined ){
 
-	var silkCarousel = {
+	var carouselThis = {
 		defaults : {
 				type                : 'normal', // normal, fluid, responsive
 				size                : 500,
@@ -17,8 +17,8 @@
 				navigation : {
 					'type'       : 'thumbnails',
 					'position'   : 'top',
-					'id'         : 'silkCarousel-menu',
-					'className'  : 'silkCarousel-menu',
+					'id'         : 'carouselThis-menu',
+					'className'  : 'carouselThis-menu',
 					'rightBtnId' : 'rightBtn',
 					'leftBtnId'  : 'leftBtn'
 				}
@@ -29,7 +29,7 @@
 				this.$el             = $(el);
 				this.winSize         = $(window).width();
 				this.settings        = $.extend({}, this.defaults, config );
-				this.$frame          = this.$el.children( '.silkCarousel-frame' );
+				this.$frame          = this.$el.children( '#carouselThis-frame' );
 				this.$slideWrap      = this.$frame.children('ol');
 				this.$slidesCollec   = this.$slideWrap.children();
 				this.initSlideLength = this.$slidesCollec.length;
@@ -86,7 +86,7 @@
 				// Create and stock "spacers" for the negative jump to page
 				self.$spacers = self.$slidesCollec.slice(0, self.initSlideLength-2)
 								.clone()
-									.addClass('silkCarousel-spacer')
+									.addClass('carouselThis-spacer')
 										.css({display:"none"})
 											.prependTo(self.$slideWrap);
 
@@ -103,7 +103,7 @@
 				for ( ;i < self.initSlideLength; i++ ) {
 					
 					navItemHtml = $('<a>', {
-							'class'     : 'silkCarousel-nav-item',
+							'class'     : 'carouselThis-nav-item',
 							'data-page' : i+1
 						});
 					
@@ -217,8 +217,8 @@
 			}
 	};
 
-	jQuery.fn.silkCarousel = function(config){
-		var instance = Object.create(silkCarousel);
+	jQuery.fn.carouselThis = function(config){
+		var instance = Object.create(carouselThis);
 		return this.each(function() {
 			instance.init(this, config);
 		});
@@ -226,6 +226,6 @@
 
 
 	// Make the class available for test
-	jQuery.fn.silkCarousel.Class = silkCarousel;
+	jQuery.fn.carouselThis.Class = carouselThis;
 
 }( jQuery, window, document ));
