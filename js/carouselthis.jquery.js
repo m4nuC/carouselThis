@@ -14,7 +14,7 @@
 				switchDelay         : 2000,
 				previousNextButtons : false,
 				navigation : {
-					'type'       : 'thumbnails',
+					'type'       : 'thumbnail',
 					'position'   : 'top',
 					'id'         : 'carouselThis-menu',
 					'className'  : 'carouselThis-menu',
@@ -39,9 +39,8 @@
 				this.$navItems       = null ;
 
 				// If no size set at ini then take the current size of the slide
-				console.log( this.settings.size );
 				this.settings.size   = this.settings.size || this.$slidesCollec.eq(0).innerWidth();
-				console.log(this.settings.size);
+
 				// Luanches init methods
 				this._initDOM();
 				this._initEvents();
@@ -58,7 +57,7 @@
 				var self = this;
 
 				// INIT NAV
-				if ( self.settings.navigation.type === 'thumbnails' ) {
+				if ( self.settings.navigation.type === 'thumbnail' ) {
 					self._setupThumbnailNav();
 				} else if ( self.settings.navigation.type === 'fixed' ) {
 					self.$navItems = $( '#' + self.settings.navigation.id ).find('a');
@@ -104,7 +103,8 @@
 				var i           = 0,
 					self        = this,
 					navHtml     = $('<ul>'),
-					navItemHtml = null;
+					navItemHtml = null,
+					calculatedThumbSize = Math.floor( self.settings.size / this.initSlideLength );
 
 				for ( ;i < self.initSlideLength; i++ ) {
 					
@@ -115,12 +115,17 @@
 					
 					navItemHtml.append( self.$slidesCollec.eq(i).children( 'img' ).clone());
 
-					navItemHtml = $( '<li>' ).append( navItemHtml );
+					navItemHtml = $( '<li>' ).append( navItemHtml )
+									.css({
+										'width'    : calculatedThumbSize,
+										'height'    : calculatedThumbSize,
+										'overflow' : 'hidden',
+										'float'    : 'left'
+									});
 					navHtml.append(navItemHtml);
 				}
 
 				navHtml.addClass( self.settings.navigation.className ).prependTo( self.$el );
-				console.log(navHtml);
 				self.$navItems = navHtml.find('a');
 			},
 
