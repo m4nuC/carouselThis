@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Da carousel</title>
+   <meta name="description" content="The most awesome carousel Ever! Period">
+   <meta name="author" content="0mbre">
+   <link rel="stylesheet" href="../css/main.css?v=1.0">
+</head>
+
+<body>
+   <div class="container">
+      <div class="carouselThis" id="carousel">       
+         
+         <div id="carouselThis-frame">
+            <!-- Frame -->
+            <ol>
+               <li>
+                  <img src="../img/slides/slide1.png" alt="" />
+               </li>
+               <li>
+                     <img src="../img/slides/slide2.png" alt="" />
+               </li>
+               <li>
+                     <img src="../img/slides/slide3.png" alt="" />
+               </li>
+               <li>
+                  <img src="../img/slides/slide4.png" alt="" />
+               </li>
+               <li>
+                     <img src="../img/slides/slide5.png" alt="" />
+               </li>
+               <li>
+                     <img src="../img/slides/slide6.png" alt="" />
+               </li>
+               <li>
+                     <img src="../img/slides/slide7.png" alt="" />
+               </li>
+
+
+            </ol>
+            <!-- /Frame -->
+         </div>
+         <a href="" id="leftBtn">LEFT</a>
+         <a href="" id="rightBtn">RIGHT</a>
+      </div>
+
+   </div>
+<script src="../js/jquery-1.8.js"></script>
+<script src="../js/jquery-easing.js"></script>
+<script src="../js/carouselThis.jquery.js"></script>
+<script>
+$(function(){ 
+   $('#carousel').carouselThis({
+      'size' : 800,
+      'navigationStyle' : 'carouselThis-menu'
+   });
+})
+</script>
+</body>
+</html>
