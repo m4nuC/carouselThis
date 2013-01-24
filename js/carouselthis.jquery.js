@@ -12,7 +12,7 @@
 				easingMethod        : "linear",
 				tansitionSpeed      : 500,
 				switchDelay         : 2000,
-				previousNextButtons : false,
+				previousNextButtons : true,
 				navigation : {
 					'type'       : 'thumbnail',
 					'position'   : 'top',
@@ -40,7 +40,7 @@
 
 				// If no size set at ini then take the current size of the slide
 				this.settings.size   = this.settings.size || this.$slidesCollec.eq(0).innerWidth();
-
+				
 				// Luanches init methods
 				this._initDOM();
 				this._initEvents();
@@ -140,6 +140,7 @@
 				});
 
 				self.$leftBtn.click(function (e) {
+					console.log('var1');
 					e.preventDefault();
 					self._goToPage(-1);
 				});
