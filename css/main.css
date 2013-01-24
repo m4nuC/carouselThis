@@ -45,3 +45,11 @@ h1 { font-size: 3em }
 .carouselThis-menu > li img {
  	width: 10em;
  }
+
+#leftBtn { font-weight: bold; font-size: 2em;}
+
+#rightBtn {
+   font-weight: bold;
+   font-size: 2em;
+   float:right
+}

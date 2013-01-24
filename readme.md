@@ -2,6 +2,8 @@
 
 Carousel / Slider Plugin that focuses on ease of use and performance. Very light weight with 0 DOM heavy lifting after initialization of the plugin. 
 
+_ More instructions comming soon _
+
 ##Usage
 
 ###Markup & Init

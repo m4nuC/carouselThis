@@ -10,6 +10,9 @@
 
 <body>
    <div class="container">
+
+      <h1>Demo of carouselThis, Jquery Carousle / Sider plugin</h1>
+      <h3> The demo below uses the Thumbnail feature that automaticaly generates a thumbnail navigation according to the slides content.<br> Very basic demo, more comming</h3>
       <div class="carouselThis" id="carousel">       
          
          <div id="carouselThis-frame">
@@ -53,6 +56,7 @@
 $(function(){ 
    $('#carousel').carouselThis({
       'size' : 800,
+      'easingMethod' : 'easeOutQuint',
       'navigationStyle' : 'carouselThis-menu'
    });
 })
