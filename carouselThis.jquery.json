@@ -1,7 +1,7 @@
 {
 	"name"        : "carouselThis",
 	"title"       : "carouselThis",
-	"description" : "Easy to user, multi feature and compact carousel script",
+	"description" : "Carousel / Slider Plugin that focuses on ease of use and performance. Very light weight with 0 DOM heavy lifting after initialization of the plugin. ",
 	"keywords"    :  
 		[
 			"carousel",
@@ -9,7 +9,7 @@
 			"image",
 			"animation"
 		],
-	"version" : "0.1.3",
+	"version" : "0.1.4",
 	"author"  : 
 	{
 		"name"    : "manu",

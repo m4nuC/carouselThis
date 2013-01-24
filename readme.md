@@ -1,6 +1,6 @@
 #carouselThis Jquery Plugin
 
-Carousel Plugin that focus on ease of use and performance.
+Carousel / Slider Plugin that focuses on ease of use and performance. Very light weight with 0 DOM heavy lifting after initialization of the plugin. 
 
 ##Usage
 
@@ -30,7 +30,7 @@ $(document).ready(function({
 ```
 Or with options:
 
-```
+```javascript
 $(document).ready(function({
    $("#carousel").carouselThis({showPager: false});
 })
