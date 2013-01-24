@@ -9,7 +9,6 @@
 	var carouselThis = {
 		defaults : {
 				type                : 'normal', // normal, fluid, responsive
-				size                : 500,
 				easingMethod        : "linear",
 				tansitionSpeed      : 500,
 				switchDelay         : 2000,
@@ -29,6 +28,7 @@
 				this.$el             = $(el);
 				this.winSize         = $(window).width();
 				this.settings        = $.extend({}, this.defaults, config );
+
 				this.$frame          = this.$el.children( '#carouselThis-frame' );
 				this.$slideWrap      = this.$frame.children('ol');
 				this.$slidesCollec   = this.$slideWrap.children();
@@ -37,6 +37,12 @@
 				this.$rightBtn       = this.$el.find( '#' + this.settings.navigation.rightBtnId );
 				this.currPage        = this.initSlideLength;
 				this.$navItems       = null ;
+
+				// If no size set at ini then take the current size of the slide
+				console.log( this.settings.size );
+				this.settings.size   = this.settings.size || this.$slidesCollec.eq(0).innerWidth();
+				console.log(this.settings.size);
+				// Luanches init methods
 				this._initDOM();
 				this._initEvents();
 				this._resetCarousel(this.initSlideLength);

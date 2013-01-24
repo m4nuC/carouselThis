@@ -13,7 +13,7 @@ p { line-height: 1.2em }
 
 h1 { font-size: 3em }
 
-.container { margin: 0 auto; width: 80em; height: 100%; background-color:#fff }
+.container { margin: 0 auto; width: 880px; height: 100%; background-color:#fff }
 
 /* =============================================================================
    Base
