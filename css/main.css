@@ -69,7 +69,7 @@ h2 { font-size: 2em }
    fixed nav
    ========================================================================== */
 
-   .fixedNavigation { width : 272px; margin : -20px auto 0;}
+   .fixedNavigation { width : 275px; margin : -20px auto 0;}
 
    .fixedNavigation a { display : block; float: left; margin-left: 3px; text-decoration: none}
 
