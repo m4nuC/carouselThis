@@ -1,10 +1,10 @@
 #carouselThis Jquery Plugin
 
-Carousel / Slider Plugin that focuses on ease of use and performance. Very light weight with 0 DOM heavy lifting after initialization of the plugin. 
+Carousel/Slider Plugin that focuses on ease of use and performance. Very light weight with 0 DOM heavy lifting after initialization of the plugin. 
 
-Basic Demo [here](http://m4nuc.github.com/carouselThis/).
+Demo [here](http://m4nuc.github.com/carouselThis/).
 
-* More instructions comming soon *
+* More Features on the way *
 
 ##Usage
 
