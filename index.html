@@ -12,11 +12,11 @@
 <body>
    <div class="container">
 
-      <h1>Demo of carouselThis, Jquery Carousle / Sider plugin</h1>
-      <h3> The demo below uses the Thumbnail feature that automaticaly generates a thumbnail navigation according to the slides content.<br> Very basic demo, more comming</h3>
-      <div class="carouselThis" id="carousel">       
-         
-         <div id="carouselThis-frame">
+      <h1>CarouselThis! Light weight Jquery Carousel Plugin</h1>
+
+      <h2>1) Fixed Navigation Example</h2>
+      <div class="carouselThis" id="carousel2">             
+         <div class="carouselThis-frame">
             <!-- Frame -->
             <ol>
                <li>
@@ -40,13 +40,54 @@
                <li>
                      <img src="img/slides/slide7.png" alt="" />
                </li>
-
-
             </ol>
             <!-- /Frame -->
          </div>
-         <a href="" id="leftBtn">LEFT</a>
-         <a href="" id="rightBtn">RIGHT</a>
+        <a href="" class="black val-btn leftBtn" id="leftBtn">LEFT</a>
+         <nav id="fixedNavigation" class="fixedNavigation">
+            <a class="val-btn blue" href="">1</a>
+            <a class="val-btn blue" href="">2</a>
+            <a class="val-btn blue" href="">3</a>
+            <a class="val-btn blue" href="">4</a>
+            <a class="val-btn blue" href="">5</a>
+            <a class="val-btn blue" href="">6</a>
+            <a class="val-btn blue" href="">7</a>
+         </nav>
+         <a href="" class="black val-btn rightBtn" id="rightBtn">RIGHT</a>
+      </div>
+
+
+      <h2 style="clear: left; padding-top : 40px"> 2) Auto Generated Thumbnails Naviagtion</h2>
+      <div class="carouselThis" id="carousel">             
+         <div class="carouselThis-frame">
+            <!-- Frame -->
+            <ol>
+               <li>
+                  <img src="img/slides/slide1.png" alt="" />
+               </li>
+               <li>
+                     <img src="img/slides/slide2.png" alt="" />
+               </li>
+               <li>
+                     <img src="img/slides/slide3.png" alt="" />
+               </li>
+               <li>
+                  <img src="img/slides/slide4.png" alt="" />
+               </li>
+               <li>
+                     <img src="img/slides/slide5.png" alt="" />
+               </li>
+               <li>
+                     <img src="img/slides/slide6.png" alt="" />
+               </li>
+               <li>
+                     <img src="img/slides/slide7.png" alt="" />
+               </li>
+            </ol>
+            <!-- /Frame -->
+         </div>
+         <a href="" class="black val-btn leftBtn" id="leftBtn">LEFT</a>
+         <a href="" class="black val-btn rightBtn" id="rightBtn">RIGHT</a>
       </div>
 
    </div>
@@ -63,7 +104,32 @@ $(function(){
          'rightBtnId' : 'rightBtn'
       }
    });
+
+   $('#carousel2').carouselThis({
+      'easingMethod' : 'easeOutQuint',
+      'autoDelay' : 5000,
+      'navigation' : {
+         'type' : 'fixed',
+         'selector' : '#fixedNavigation',
+         'leftBtnId' : 'leftBtn',
+         'rightBtnId' : 'rightBtn'
+      }
+   });
+
 })
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38533678-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 </script>
 </body>
 </html>

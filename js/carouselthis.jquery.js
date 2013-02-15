@@ -10,13 +10,13 @@
 		defaults : {
 				type                : 'normal', // normal, fluid, responsive
 				easingMethod        : "linear",
-				tansitionSpeed      : 500,
-				switchDelay         : 2000,
+				tansitionSpeed      : 300,
+				autoDelay         : 2000,
 				previousNextButtons : true,
 				navigation : {
 					'type'       : 'thumbnail',
 					'position'   : 'top',
-					'id'         : 'carouselThis-menu',
+					'selector'   : 'carouselThis-menu',
 					'className'  : 'carouselThis-menu',
 					'rightBtnId' : 'rightBtn',
 					'leftBtnId'  : 'leftBtn'
@@ -29,7 +29,7 @@
 				this.winSize         = $(window).width();
 				this.settings        = $.extend({}, this.defaults, config );
 
-				this.$frame          = this.$el.children( '#carouselThis-frame' );
+				this.$frame          = this.$el.children( '.carouselThis-frame' );
 				this.$slideWrap      = this.$frame.children('ol');
 				this.$slidesCollec   = this.$slideWrap.children();
 				this.initSlideLength = this.$slidesCollec.length;
@@ -59,8 +59,9 @@
 				// INIT NAV
 				if ( self.settings.navigation.type === 'thumbnail' ) {
 					self._setupThumbnailNav();
+
 				} else if ( self.settings.navigation.type === 'fixed' ) {
-					self.$navItems = $( '#' + self.settings.navigation.id ).find('a');
+					self.$navItems = $( self.settings.navigation.selector ).find('a');
 					self.$navItems.each( function(i) {
 						self.$navItems.eq( i ).data( 'page', i + 1 );
 					});
@@ -125,7 +126,7 @@
 					navHtml.append(navItemHtml);
 				}
 
-				navHtml.addClass( self.settings.navigation.className ).prependTo( self.$el );
+				navHtml.addClass( self.settings.navigation.className ).appendTo( self.$el );
 				self.$navItems = navHtml.find('a');
 			},
 
@@ -154,6 +155,13 @@
 					if (toPage === fromPage) return false;
 					self._goToPage(toPage, fromPage);
 				});
+
+				//Lauch auto scrooling if need
+				if ( self.settings.autoDelay ) {
+					setTimeout( function() {
+						self._slideRight();
+					}, self.settings.autoDelay);
+				}
 			},
 
 			_resetCarousel: function(p) {
@@ -226,6 +234,10 @@
 				});
 				self._addCurrent();
 				return false;
+			},
+
+			_slideRight : function() {
+				this.$rightBtn.click();
 			}
 	};
 

@@ -11,13 +11,21 @@ body { font-family: Arial; font-size: 62.5%; /* 1em = 10px */}
 
 p { line-height: 1.2em }
 
-h1 { font-size: 3em }
+h1 { font-size: 3.6em ; color: #303030;}
 
-.container { margin: 0 auto; width: 880px; height: 100%; background-color:#fff }
+h2 { font-size: 2em }
+
+
+.container { margin: 0 auto; width: 880px; height: 100%; background-color:#fff; padding: 30px 0 100px ;}
 
 /* =============================================================================
    Base
    ========================================================================== */
+
+.carouselThis {
+   position: relative;
+   margin-bottom: 60px
+}
 
 .carouselThis-wrapper {
 	
@@ -29,7 +37,7 @@ h1 { font-size: 3em }
 	float: left;
 }
 
-#carouselThis-frame { overflow: hidden;clear: left}
+.carouselThis-frame { overflow: hidden;clear: left}
 /* =============================================================================
    nav
    ========================================================================== */
@@ -46,10 +54,46 @@ h1 { font-size: 3em }
  	width: 10em;
  }
 
-#leftBtn { font-weight: bold; font-size: 2em;}
-
-#rightBtn {
-   font-weight: bold;
+.leftBtn, .rightBtn {
+   position: absolute;
+   top: 50%;
+   font-weight: bold; 
    font-size: 2em;
-   float:right
 }
+.rightBtn  { right: -20px;}
+.leftBtn  { left: -20px;}
+
+
+
+/* =============================================================================
+   fixed nav
+   ========================================================================== */
+
+   .fixedNavigation { width : 272px; margin : -20px auto 0;}
+
+   .fixedNavigation a { display : block; float: left; margin-left: 3px; text-decoration: none}
+
+   .val-btn { 
+      font-size: 1.4em;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff; padding: 8px 14px 10px; background-color: #bc1815; border: none; margin: 0 auto;;
+      -webkit-user-select: none;
+      -webkit-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
+      box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+      -moz-text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+       z-index: 9999 
+          }
+   .val-btn:active { margin-top: 3px;
+       -webkit-box-shadow: inset 0px -3px 1px rgba(255, 255, 255, 1), inset 0 0px 3px rgba(0, 0, 0, 0.9);
+       -moz-box-shadow: inset 0px -3px 1px rgba(255, 255, 255, 1), inset 0 0px 3px rgba(0, 0, 0, 0.9);
+       box-shadow: inset 0px -3px 1px rgba(255, 255, 255, 1), inset 0 0px 3px rgba(0, 0, 0, 0.9);z-index: 9999
+   }
+ 
+ .blue { background-color: #2D9FC9}
