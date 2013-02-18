@@ -4,7 +4,7 @@ Carousel/Slider Plugin that focuses on ease of use and performance. Very light w
 
 Demo [here](http://m4nuc.github.com/carouselThis/).
 
-* More Features on the way *
+###More Features on the way###
 
 ##Usage
 

@@ -148,7 +148,7 @@
 
 				self.$navItems.click(function (e) {
 					e.preventDefault();
-
+					
 					var toPage = parseInt($(this).data('page'), 10),
 						fromPage = self._indexIsContent(self.currPage + 1); // Plus one cause currpage is 0 based
 					
