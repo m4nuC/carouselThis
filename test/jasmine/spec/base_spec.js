@@ -1,7 +1,8 @@
-describe('Silk Carousel', function() {
-	var $carouselFixture = $( readFixtures('carousel-fixture.html'));
+describe('carouselThis', function() {
+	var $carousel;
 
 	beforeEach(function() {
+
 		this.addMatchers({
 			toBeInstanceOf : function( expected ) {
 				return this.actual instanceof expected && this.actual.length > 0;
@@ -26,7 +27,7 @@ describe('Silk Carousel', function() {
 	});
 
 	afterEach(function() {
-		//$carouselFixture = $( readFixtures('carousel-fixture.html'));
+		//$carousel = $( readFixtures('carousel-fixture.html'));
 	});
 
 	describe("Initialization", function() {
@@ -46,11 +47,6 @@ describe('Silk Carousel', function() {
 			expect($.fn.carouselThis.Class).toBeA( 'object' );
 		});
 
-		describe("Markup", function() {
-			it("Find the Carousel Fixture", function() {
-				expect($carouselFixture).toBeDefined();
-			});
-		});
 	});
 
 	describe("jQuery.carouselThis Method", function() {
@@ -59,13 +55,19 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should be chainable", function() {
-			expect($carouselFixture.carouselThis).toBeA('function');
+			loadFixtures('carousel-fixture.html');
+			$carousel = $('#carousel2');
+			expect($carousel.carouselThis().carouselThis).toBeA('function');
 		});
 
-		it("should be able to iterate through a jquery Collection", function() {
-			var $carouselInstances = $carouselFixture.filter('.carouselThis');
-			expect($(sandbox()).carouselThis()).toBeInstanceOf( jQuery );
-		});
+		// it("should be able to iterate through a jquery Collection", function() {
+		// 	var carouselInstances = readFixtures('carousel-fixture.html');
+		// 	carouselInstances += readFixtures('carousel-fixture.html');
+		// 	setFixtures(carouselInstances);
+		// 	var $carousels = $('.carousel2');
+
+		// 	expect($carousels).toBeInstanceOf( jQuery );
+		// });
 
 		it("Sould have a defaut object", function() {
 			var instance = Object.create($.fn.carouselThis.Class);
@@ -83,24 +85,34 @@ describe('Silk Carousel', function() {
 		});
 
 		it("Default object should get overiden by config", function() {
+			loadFixtures('carousel-fixture.html');
+			$carousel = $('.silkCarousel-frame');
 			var instance = Object.create($.fn.carouselThis.Class);
-			instance.init( $carouselFixture, { size : 1 });
+			instance.init( $carousel, { size : 1 });
 			expect(instance.settings).toBeA( 'object' );
 			expect(instance.settings.size).toBe(1);
 		});
 	});
 
 	describe('DOM init', function() {
-		var $frame = $carouselFixture.children('div');
-		var $slideWraper = $frame.children('ol');
-		var initialNumberOfSlide = $slideWraper.children().length;
+		var $frame, $slideWraper, initialNumberOfSlide, $carousel;
 
-		it('Should find the slides framed Viewport', function() {
-			expect( $frame ).toBeInstanceOf( jQuery );
+		beforeEach(function() {
+			loadFixtures('carousel-fixture.html');
+			$carousel = $('.silkCarousel-frame');
+			initialNumberOfSlide = $carousel.find('ol').children().length;
+		});
+
+
+
+		describe("Markup", function() {
+			it("Find the Carousel Markup", function() {
+				expect($carousel).toBeDefined();
+			});
 		});
 
 		it('Should find the slides Wrapper', function() {
-			expect( $slideWraper ).toBeInstanceOf( jQuery );
+			expect( $carousel.find('ol') ).toBeDefined();
 		});
 
 		it("should find slides", function() {
@@ -108,32 +120,30 @@ describe('Silk Carousel', function() {
 		});
 
 		it("should duplicate slides", function() {
-			spyOn( jQuery.fn, 'carouselThis');
-			$carouselFixture.carouselThis();
-
-			expect(jQuery.fn.carouselThis).toHaveBeenCalled();
-			expect(initialNumberOfSlide).toBeLessThan( $slideWraper.children().length );
-			expect($slideWraper.children().length).toEqual(initialNumberOfSlide * 2 + 1);
+			$carousel = $('#carousel2');
+			$carousel.carouselThis();
+			expect(initialNumberOfSlide).toBeLessThan( $carousel.find('ol').children().length );
+			// expect($slideWraper.children().length).toEqual(initialNumberOfSlide * 2 + 1);
 		});
 
-		it("should create the navigation", function() {
-			spyOn( jQuery.fn, 'carouselThis');
-			$carouselFixture.carouselThis();
-			expect(jQuery.fn.carouselThis).toHaveBeenCalled();
-			var $menuWrap = $carouselFixture.children('.carouselThis-menu');
-			expect($menuWrap).toBeInstanceOf( jQuery );
-			expect($menuWrap).toHaveClass('carouselThis-menu');
-			expect($menuWrap.children().length).toEqual(initialNumberOfSlide);
-			expect($menuWrap.children().first()).nodeNameToBe('li');
-			var menuItem = $menuWrap.children().first().find('a');
-			expect(menuItem).toBeInstanceOf( jQuery );
-			expect(menuItem).toHaveAttr('data-page');
-		});
+		// it("should create the navigation", function() {
+		// 	$carousel.carouselThis();
+		// 	var $menuWrap = $carousel.children('.carouselThis-menu');
+		// 	expect($menuWrap).toBeInstanceOf( jQuery );
+		// 	expect($menuWrap).toHaveClass('carouselThis-menu');
+		// 	expect($menuWrap.children().length).toEqual(initialNumberOfSlide);
+		// 	expect($menuWrap.children().first()).nodeNameToBe('li');
+		// 	var menuItem = $menuWrap.children().first().find('a');
+		// 	expect(menuItem).toBeInstanceOf( jQuery );
+		// 	expect(menuItem).toHaveAttr('data-page');
+		// });
 
 		it("Should createa 'spacer' for negative jump to page", function() {
+			$carousel = $('#carousel2');
 			console.log($.fn.carouselThis.Class);
 			var instance = Object.create($.fn.carouselThis.Class);
-			instance.init( $carouselFixture);
+			instance.init( $carousel);
+			console.log(instance);
 			expect(instance.$spacers.length).toBeGreaterThan(0);
 		});
 	});

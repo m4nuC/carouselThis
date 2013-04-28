@@ -55,7 +55,7 @@
 			_initDOM : function() {
 
 				var self = this;
-
+				console.log(this.el);
 				// INIT NAV
 				if ( self.settings.navigation.type === 'thumbnail' ) {
 					self._setupThumbnailNav();
@@ -80,7 +80,7 @@
 
 				self.$slideWrap.css('width', (self.settings.size * (self.initSlideLength * 4)));
 
-
+								console.log(self.initSlideLength);
 				//DOM HEAVY LIFTING
 				// Duplicate the whole collection to the left and then the first slide to the right.
 				self.$slidesCollec = self.$slidesCollec.clone()
@@ -96,6 +96,7 @@
 										.css({display:"none"})
 											.prependTo(self.$slideWrap);
 
+											console.log(self.$spacers);
 
 			},
 
