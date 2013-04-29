@@ -1,7 +1,6 @@
 describe("carouselThis Jquery Plugin", function() {
-	// Globals
-	var carousel1Fix, carousel2Fix;
 
+	// Environment Tests
 	it("jQuery should be available", function() {
 		expect(jQuery).toBeDefined();
 		// @TODO check for a minimal version of jquery
@@ -17,5 +16,38 @@ describe("carouselThis Jquery Plugin", function() {
 
 	it("Jasmine jQuery should be around", function() {
 		expect(loadFixtures).toBeA('Function');
+	});
+
+	// DOM tests
+	describe("DOM init", function() {
+		// Globals
+		var fix, $carousel1;
+
+		beforeEach(function() {
+			fix = readFixtures('carouselFixture.html');
+			$carousel1 = $(fix).filter('#carousel1');
+		});
+
+		it("Should be able to read a fixture", function() {
+			expect(fix).toBeDefined();
+		});
+
+		it("Should find carousel markup", function() {
+
+			// @TODO find second carousel
+			expect($carousel1).toBeDefined();
+		});
+
+		it("Should find carousel markup", function() {
+			expect($carousel1).toBeDefined();
+		});
+
+
+		describe('Plugin init', function() {
+			it("Should be chainable", function() {
+				expect($carousel1.carouselThis()).toEqual($carousel1);
+			});
+		});
+
 	});
 });

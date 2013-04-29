@@ -1,5 +1,5 @@
 /**
- * SilkCarousel - jquery Plugin
+ * SilkCarousel - jQuery Plugin
  * Emmanuel Chappat m4nu.co
  *
 */
@@ -7,9 +7,18 @@
 ;(function( $, window, document, undefined ){
 
 	// Using revealing pattern to avoid building a big object literal
-	var carouselThis = function() {
+	var carouselThis = (function() {
 
-	};
+		// Private shit
+		function _init(el, config) {
+			return el;
+		}
+
+		// Exposed API method go there
+		return {
+			init : _init
+		};
+	}());
 
 	jQuery.fn.carouselThis = function( config ){
 		var instance = Object.create( carouselThis );
