@@ -42,12 +42,24 @@ describe("carouselThis Jquery Plugin", function() {
 			expect($carousel1).toBeDefined();
 		});
 
-
+		// Initiating the plug-in 
 		describe('Plugin init', function() {
 			it("Should be chainable", function() {
 				expect($carousel1.carouselThis()).toEqual($carousel1);
 			});
+
+			it("Should have a defaults object", function() {
+				console.log(jQuery.fn.carouselThis.Class);
+				expect(jQuery.fn.carouselThis.Class.defaults).toBeDefined();
+			});
+
+			// it("Should take in an option object as parameter", function() {
+			// 	var options = { 'dummyValue': 1 };
+			// 	expect($carousel1.carouselThis(sandbox())).toHaveId('sandbox');
+			// });
 		});
+
+
 
 	});
 });

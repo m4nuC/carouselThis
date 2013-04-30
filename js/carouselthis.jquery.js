@@ -7,7 +7,10 @@
 ;(function( $, window, document, undefined ){
 
 	// Using revealing pattern to avoid building a big object literal
-	var carouselThis = (function() {
+	var carouselThis = function() {
+
+		// Defaults 
+		var defautls = {};
 
 		// Private shit
 		function _init(el, config) {
@@ -18,7 +21,7 @@
 		return {
 			init : _init
 		};
-	}());
+	}();
 
 	jQuery.fn.carouselThis = function( config ){
 		var instance = Object.create( carouselThis );
